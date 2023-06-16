@@ -1,0 +1,1 @@
+export default baseUrl = 'https://activities-register-server-app-b11a66e54362.herokuapp.com'
