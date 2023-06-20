@@ -39,14 +39,34 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.activities = data
+          // todo sort activities
+          this.sortActivities()
+          this.activities.reverse()
           console.log(data)
           console.log(this.activities)
         })
         .finally(() => {
           this.isLoading = false
         })
+    },
+    sortActivities() {
+      this.activities.sort((a, b) => {
+        const date1 = new Date(a.fecha).getTime()
+        const date2 = new Date(b.fecha).getTime()
+
+        if (date1 < date2) {
+          return -1;
+        } else if (date1 > date2) {
+          return 1
+        } else {
+          return 0
+        }
+
+
+
+      })
+    },
     }
-  }
 }
 </script>
 <template>
