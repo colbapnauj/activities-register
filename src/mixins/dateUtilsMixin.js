@@ -12,12 +12,11 @@ export default {
     formatHour(time) {
       // hour is a int value with fraction like 1.1333, I need to convert it to HH:mm
       // validate if time start with 0. and manage it
-      if (time.toString().startsWith('0.')) {
-        const hour = moment(time, 'mm').format('HH:mm')
-        return hour
-      }
-      const hour = moment(time, 'hh:mm').format('HH:mm')
-      return hour
+
+      const duration = moment.duration(time, 'hours')
+      const hour = duration.get('hours')
+      const minutes = duration.get('minutes')
+      return `${hour.toString().padStart(2, '0')}:${minutes.toString().padEnd(2, '0')}`
     },
     formatddddMMyyyy(date) {
       const formattedDate = moment(date).format('dddd DD/MM/YYYY')
